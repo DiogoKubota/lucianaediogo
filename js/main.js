@@ -4,18 +4,23 @@
 
 	var mobileMenuOutsideClick = function() {
 
-		$(document).click(function (e) {
-	    var container = $("#fh5co-offcanvas, .js-fh5co-nav-toggle");
-	    if (!container.is(e.target) && container.has(e.target).length === 0) {
+		$(document).on('click', function (e) {
 
-	    	if ( $('body').hasClass('offcanvas') ) {
+			// permite cliques nos links do menu
+			if ($(e.target).closest('#fh5co-offcanvas a').length) {
+				return;
+			}
 
-    			$('body').removeClass('offcanvas');
-    			$('.js-fh5co-nav-toggle').removeClass('active');
-	    	}
-	    }
+			var container = $("#fh5co-offcanvas, .js-fh5co-nav-toggle");
+
+			if (!container.is(e.target) && container.has(e.target).length === 0) {
+
+				if ($('body').hasClass('offcanvas')) {
+					$('body').removeClass('offcanvas overflow');
+					$('.js-fh5co-nav-toggle').removeClass('active');
+				}
+			}
 		});
-
 	};
 
 
@@ -66,21 +71,40 @@
 	var burgerMenu = function() {
 
 		$('body').on('click', '.js-fh5co-nav-toggle', function(event){
+			event.preventDefault();
+			event.stopPropagation(); // ← MUITO IMPORTANTE
+
 			var $this = $(this);
 
-
-			if ( $('body').hasClass('overflow offcanvas') ) {
-				$('body').removeClass('overflow offcanvas');
-			} else {
-				$('body').addClass('overflow offcanvas');
-			}
+			$('body').toggleClass('offcanvas overflow');
 			$this.toggleClass('active');
-			event.preventDefault();
-
 		});
 	};
 
 
+
+	var offcanvasLinks = function () {
+
+	$('body').on('click', '#fh5co-offcanvas a', function (event) {
+
+		var href = $(this).attr('href');
+
+		// ignora links vazios ou #
+		if (!href || href === '#') {
+			return;
+		}
+
+		event.stopPropagation(); // ← CRÍTICO
+		// NÃO usar preventDefault aqui
+
+		// fecha o menu
+		$('body').removeClass('offcanvas overflow');
+		$('.js-fh5co-nav-toggle').removeClass('active');
+
+		// garante navegação
+		window.location.href = href;
+		});
+	};
 
 	var contentWayPoint = function() {
 		var i = 0;
@@ -217,8 +241,9 @@
 	$(function(){
 		mobileMenuOutsideClick();
 		parallax();
-		//offcanvasMenu();
-		//burgerMenu();
+		offcanvasMenu();
+		burgerMenu();
+		offcanvasLinks();
 		contentWayPoint();
 		dropdown();
 		testimonialCarousel();
