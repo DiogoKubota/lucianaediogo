@@ -1805,3 +1805,14 @@ form label {
 
 /*# sourceMappingURL=style.css.map */
 
+@media (max-width: 768px) {
+  .fh5co-cover {
+    background-attachment: scroll !important;
+    background-position: center center !important;
+  }
+}
+
+.fh5co-cover {
+  transform: translateZ(0);
+  will-change: transform;
+}

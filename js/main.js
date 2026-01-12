@@ -234,7 +234,9 @@
 
 	// Parallax
 	var parallax = function() {
-		$(window).stellar();
+		if (!/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+  			$(window).stellar();
+		}
 	};
 
 	
