@@ -1816,3 +1816,25 @@ form label {
   transform: translateZ(0);
   will-change: transform;
 }
+
+#fh5co-header {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;      /* vertical */
+    justify-content: center;  /* horizontal */
+    text-align: center;
+    position: relative;
+}
+
+#fh5co-header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#fh5co-header .container {
+    position: relative;
+    z-index: 2; /* fica por cima do overlay */
+}
