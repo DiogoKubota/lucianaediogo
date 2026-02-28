@@ -1916,8 +1916,8 @@ form label {
 .map-responsive {
     position: relative;
     width: 100%;
-    max-width: 320px; /* controla largura máxima no desktop */
-    margin: 0 auto;   /* centra */
+    max-width: 320px;
+    margin: 20px auto 0 auto; /* 👈 isto centra horizontalmente */
 }
 
 .map-responsive iframe {
@@ -1925,14 +1925,10 @@ form label {
     height: 200px;
     border: 0;
     display: block;
+    border-radius: 12px; /* opcional – fica mais elegante */
 }
 
-@media (max-width: 768px) {
-    .map-responsive {
-        max-width: 100%; /* no mobile ocupa toda a largura */
-    }
-
-    .map-responsive iframe {
-        height: 250px; /* mapa maior no telemóvel */
-    }
+.event-wrap .map-responsive {
+    margin-left: auto;
+    margin-right: auto;
 }
