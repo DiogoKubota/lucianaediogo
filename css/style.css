@@ -1911,3 +1911,28 @@ form label {
         padding: 0 8px;
     }
 }
+
+
+.map-responsive {
+    position: relative;
+    width: 100%;
+    max-width: 320px; /* controla largura máxima no desktop */
+    margin: 0 auto;   /* centra */
+}
+
+.map-responsive iframe {
+    width: 100%;
+    height: 200px;
+    border: 0;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .map-responsive {
+        max-width: 100%; /* no mobile ocupa toda a largura */
+    }
+
+    .map-responsive iframe {
+        height: 250px; /* mapa maior no telemóvel */
+    }
+}
